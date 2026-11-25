@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glossary · ChemTools</title>
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <style>
+    .progress { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: .9rem; }
+    .progress b { font-size: 1.3rem; display: block; }
+    .bar { height: 8px; background: var(--accent-soft); border-radius: 99px; overflow: hidden; margin-top: .8rem; }
+    .bar > div { height: 100%; background: var(--accent); }
+    .letter { font-size: 1.1rem; color: var(--accent); margin: 1.6rem 0 .5rem; border-bottom: 1px solid var(--border); padding-bottom: .2rem; }
+    .term { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--fc, var(--border)); border-radius: var(--radius); padding: .9rem 1.1rem; margin: .6rem 0; scroll-margin-top: 1rem; }
+    .term.flash { outline: 2px solid var(--accent); }
+    .term h3 { margin: 0; font-size: 1.05rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: baseline; }
+    .term .aka { color: var(--muted); font-weight: 400; font-size: .88rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: .35rem 0 .5rem; }
+    .tag { font-size: .72rem; font-weight: 600; padding: .1rem .5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); }
+    .tag.todo { background: #fff3cd; color: #8a6100; }
+    .tag.ok { background: #e3f6e8; color: var(--ok); }
+    .def.empty { color: var(--muted); font-style: italic; }
+    .links { font-size: .88rem; margin: .4rem 0 0; display: grid; gap: .2rem; }
+    .links span.k { color: var(--muted); }
+    .warn { font-size: .85rem; background: #fdecea; color: #8a1c1c; border-radius: 8px; padding: .4rem .65rem; margin-top: .5rem; }
+    .cite { font-size: .8rem; color: var(--muted); font-style: italic; white-space: nowrap; }
+    .notes { font-size: .85rem; color: var(--muted); margin-top: .4rem; }
+    .actions { font-size: .82rem; margin-top: .5rem; }
+    details.todo-list summary { cursor: pointer; font-weight: 600; }
+    details.todo-list ul { columns: 2 220px; font-size: .9rem; }
+    @media (prefers-color-scheme: dark) {
+      .tag.todo { background: #3a2f10; color: #f0c674; }
+      .tag.ok { background: #13321d; color: var(--ok); }
+      .warn { background: #3a1a1a; color: #ffb4b4; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../">Chem<span>Tools</span></a>
+      <nav><a href="../timeline/">Timeline</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <div class="crumbs"><a href="../../">All tools</a> · Chapter 1: Essential Ideas</div>
+      <h1>Glossary</h1>
+      <p class="muted">Every term, how it connects to others, and where it appears in Chemistry 2e.</p>
+    </div>
+
+    <section class="panel">
+      <div class="progress" id="progress"></div>
+      <div class="bar"><div id="bar" style="width:0"></div></div>
+    </section>
+
+    <section class="panel">
+      <div class="row">
+        <div style="flex:1 1 240px">
+          <label for="q">Search</label>
+          <input id="q" type="search" placeholder="Search terms and definitions…" style="width:100%" />
+        </div>
+        <div>
+          <label for="chapter">Chapter</label>
+          <select id="chapter"><option value="">All</option></select>
+        </div>
+        <div>
+          <label for="field">Field</label>
+          <select id="field"><option value="">All</option></select>
+        </div>
+        <div>
+          <label for="status">Status</label>
+          <select id="status">
+            <option value="">All</option>
+            <option value="written">Written</option>
+            <option value="todo">Still to write</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="todo-panel" hidden>
+      <details class="todo-list">
+        <summary id="todo-summary"></summary>
+        <p class="muted" style="font-size:.85rem">These terms are linked from other terms but don't have an entry yet.</p>
+        <ul id="todo"></ul>
+      </details>
+    </section>
+
+    <section class="panel" id="warn-panel" hidden>
+      <details class="todo-list">
+        <summary id="warn-summary"></summary>
+        <ul id="warnings" style="columns:1"></ul>
+      </details>
+    </section>
+
+    <div id="list"><p class="muted">Loading…</p></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Topics follow <a href="https://openstax.org/details/books/chemistry-2e">OpenStax Chemistry 2e</a> (Flowers, Theopold, Langley &amp; Robinson), licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. Access for free at <a href="https://openstax.org/books/chemistry-2e/pages/1-introduction">openstax.org/books/chemistry-2e/pages/1-introduction</a>. Text marked “Chemistry 2e” is quoted from the book; everything else is written by the site authors. Not affiliated with or endorsed by OpenStax.</div>
+  </footer>
+
+  <script type="module">
+    import { loadTerms, linksFor, fieldColors, slug, escapeHtml as h } from "../../assets/js/terms.js";
+
+    const $ = (id) => document.getElementById(id);
+    const { terms, edges, warnings, stats } = await loadTerms();
+    const colors = fieldColors(terms);
+    const all = [...terms.values()].sort((a, b) => a.name.localeCompare(b.name));
+    const name = (id) => terms.get(id)?.name ?? id;
+
+    // Progress
+    const pct = stats.total ? Math.round((100 * stats.written) / (stats.total + stats.ghosts)) : 0;
+    $("progress").innerHTML = `
+      <div><b>${stats.written}</b>written</div>
+      <div><b>${stats.unwritten + stats.ghosts}</b>still to write</div>
+      <div><b>${edges.length}</b>connections</div>`;
+    $("bar").style.width = pct + "%";
+
+    // To-write list (ghost terms)
+    const ghosts = all.filter((t) => t.ghost);
+    if (ghosts.length) {
+      $("todo-panel").hidden = false;
+      $("todo-summary").textContent = `${ghosts.length} linked term${ghosts.length > 1 ? "s" : ""} without an entry yet`;
+      $("todo").innerHTML = ghosts.map((t) => `<li><b>${h(t.name)}</b> <span class="muted">← ${t.referencedBy.map(h).join(", ")}</span></li>`).join("");
+    }
+    if (warnings.length) {
+      $("warn-panel").hidden = false;
+      $("warn-summary").textContent = `${warnings.length} formatting note${warnings.length > 1 ? "s" : ""}`;
+      $("warnings").innerHTML = warnings.map((w) => `<li>${h(w)}</li>`).join("");
+    }
+
+    // Filters
+    const chapters = [...new Set(all.map((t) => t.chapter).filter(Boolean))].sort((a, b) => a - b);
+    $("chapter").innerHTML += `<option value="fields">Fields</option>` + chapters.map((c) => `<option value="${c}">Chapter ${c}</option>`).join("");
+    $("field").innerHTML += [...colors.keys()].map((f) => `<option value="${f}">${h(name(f))}</option>`).join("");
+
+    function card(t) {
+      const links = linksFor(t.id, terms, edges);
+      const groups = {};
+      for (const l of links) if (l.type !== "confused-with") (groups[l.label] ??= []).push(l.other);
+      const confused = links.filter((l) => l.type === "confused-with").map((l) => l.other);
+      const status = t.ghost || !t.definition
+        ? `<span class="tag todo">to write</span>`
+        : "";
+      const fc = colors.get(t.field) || "";
+      return `
+        <article class="term" id="${t.id}" style="--fc:${fc}">
+          <h3>${h(t.name)} ${t.aka.length ? `<span class="aka">(${t.aka.map(h).join(", ")})</span>` : ""}</h3>
+          <div class="tags">
+            ${t.kind === "field" ? `<span class="tag">field</span>` : ""}
+            ${t.field && t.kind !== "field" ? `<span class="tag" style="background:${fc}22;color:${fc}">${h(name(t.field))}</span>` : ""}
+            ${t.section ? `<span class="tag">§ ${h(t.section)}</span>` : t.chapter ? `<span class="tag">Ch ${t.chapter}</span>` : ""}
+            ${status}
+          </div>
+          <p class="def ${t.definition ? "" : "empty"}" style="margin:0">${t.definition ? h(t.definition) + (t.fromBook ? ` <span class="cite">— Chemistry 2e${t.section ? ` §${h(t.section)}` : ""}</span>` : "") : t.ghost ? `Linked from ${t.referencedBy.map(h).join(", ")} — no entry yet.` : "No definition yet."}</p>
+          ${Object.keys(groups).length ? `<div class="links">${Object.entries(groups).map(([k, arr]) =>
+              `<div><span class="k">${h(k)}:</span> ${arr.map((o) => `<a href="#${o.id}">${h(o.name)}</a>`).join(", ")}</div>`).join("")}</div>` : ""}
+          ${confused.length ? `<div class="warn">⚠ Often confused with ${confused.map((o) => `<a href="#${o.id}">${h(o.name)}</a>`).join(", ")}</div>` : ""}
+          ${t.source ? `<div class="actions muted">data/terms/${h(t.source)}</div>` : ""}
+        </article>`;
+    }
+
+    function render() {
+      const q = $("q").value.trim().toLowerCase();
+      const ch = $("chapter").value, f = $("field").value, st = $("status").value;
+      const shown = all.filter((t) => {
+        if (q && !`${t.name} ${t.aka.join(" ")} ${t.definition}`.toLowerCase().includes(q)) return false;
+        if (ch === "fields" && t.kind !== "field") return false;
+        if (ch && ch !== "fields" && String(t.chapter) !== ch) return false;
+        if (f && t.field !== f) return false;
+        const written = !t.ghost && t.definition;
+        if (st === "written" && !written) return false;
+        if (st === "todo" && written) return false;
+        return true;
+      });
+      if (!shown.length) { $("list").innerHTML = `<p class="muted">No terms match.</p>`; return; }
+      let html = "", letter = "";
+      for (const t of shown) {
+        const L = t.name[0].toUpperCase();
+        if (L !== letter) { letter = L; html += `<h2 class="letter">${h(L)}</h2>`; }
+        html += card(t);
+      }
+      $("list").innerHTML = html;
+    }
+
+    function flashHash() {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const el = id && document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.classList.add("flash");
+      setTimeout(() => el.classList.remove("flash"), 1600);
+    }
+
+    ["q", "chapter", "field", "status"].forEach((id) => $(id).addEventListener("input", render));
+    window.addEventListener("hashchange", () => {
+      // If the target is filtered out, clear filters so the link works.
+      if (!document.getElementById(location.hash.slice(1))) { ["q","chapter","field","status"].forEach((id) => ($(id).value = "")); render(); }
+      flashHash();
+    });
+    render();
+    flashHash();
+  </script>
+</body>
+</html>

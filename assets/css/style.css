@@ -1,0 +1,76 @@
+/* Shared styles for the site and every tool. */
+:root {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --text: #1c2230;
+  --muted: #5d6679;
+  --border: #dfe3ec;
+  --accent: #1f6feb;
+  --accent-soft: #e8f0fe;
+  --ok: #1a7f37;
+  --err: #c62828;
+  --radius: 10px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1218; --surface: #171b23; --text: #e6e9ef; --muted: #9aa3b5;
+    --border: #2a303c; --accent: #5b9bff; --accent-soft: #1b2638;
+    --ok: #4cc26a; --err: #ff6b6b;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.55; }
+a { color: var(--accent); }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+
+/* Header / footer */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--border); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .9rem; }
+.brand { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+.brand span { color: var(--accent); }
+.site-footer { border-top: 1px solid var(--border); margin-top: 3rem; padding: 1.5rem 0; color: var(--muted); font-size: .85rem; }
+
+/* Home */
+.hero { padding: 2.5rem 0 1rem; }
+.hero h1 { margin: 0 0 .4rem; font-size: 2rem; }
+.hero p { margin: 0; color: var(--muted); max-width: 60ch; }
+.controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin: 1.5rem 0; }
+.controls input[type="search"] { flex: 1 1 260px; }
+.chapter h2 { font-size: 1.15rem; margin: 2rem 0 .75rem; }
+.ch-num { display: inline-block; font-size: .75rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: .1rem .55rem; margin-right: .35rem; vertical-align: middle; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .9rem; }
+.card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; color: inherit; text-decoration: none; }
+.card h3 { margin: 0 0 .35rem; font-size: 1rem; }
+.card p { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; }
+.card.ready:hover { border-color: var(--accent); }
+.card.planned { opacity: .65; }
+.badge { font-size: .78rem; font-weight: 600; color: var(--accent); }
+.card.planned .badge { color: var(--muted); }
+
+/* Tool pages */
+.tool-head { padding: 2rem 0 .5rem; }
+.tool-head h1 { margin: .2rem 0 .3rem; }
+.crumbs { font-size: .85rem; color: var(--muted); }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin: 1rem 0; }
+.panel h2 { margin-top: 0; font-size: 1.05rem; }
+.row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; }
+label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .25rem; }
+input, select, button { font: inherit; }
+input[type="text"], input[type="number"], input[type="search"], select {
+  padding: .55rem .7rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); min-width: 0;
+}
+button { padding: .55rem 1rem; border: 0; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; }
+button.secondary { background: var(--accent-soft); color: var(--accent); }
+.result { font-size: 1.6rem; font-weight: 700; margin: .5rem 0; }
+.error { color: var(--err); font-weight: 600; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--mono); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ref { font-size: .85rem; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chips button { background: var(--accent-soft); color: var(--accent); padding: .3rem .65rem; font-size: .85rem; }

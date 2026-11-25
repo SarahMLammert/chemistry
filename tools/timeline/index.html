@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeline · ChemTools</title>
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <style>
+    .era { margin: 2rem 0 .5rem; font-size: 1.1rem; color: var(--accent); }
+    .tl { position: relative; margin-left: 5.5rem; border-left: 2px solid var(--border); padding-left: 1.4rem; }
+    @media (max-width: 600px) { .tl { margin-left: .5rem; } .ev .year { position: static !important; display: block; text-align: left !important; width: auto !important; margin-bottom: .2rem; } }
+    .ev { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .8rem 1rem; margin: .8rem 0; scroll-margin-top: 1rem; }
+    .ev.flash { outline: 2px solid var(--accent); }
+    .ev::before { content: ""; position: absolute; left: calc(-1.4rem - 7px); top: 1.05rem; width: 12px; height: 12px; border-radius: 50%; background: var(--dot, var(--accent)); border: 2px solid var(--bg); }
+    .ev .year { position: absolute; left: calc(-1.4rem - 6.5rem); width: 5.5rem; text-align: right; top: .8rem; font-weight: 700; font-variant-numeric: tabular-nums; font-size: .9rem; }
+    .ev.key { border-color: var(--accent); box-shadow: 0 1px 0 var(--accent); }
+    .ev.key::before { width: 16px; height: 16px; left: calc(-1.4rem - 9px); top: .9rem; }
+    .ev.key h3 { font-size: 1.12rem; }
+    .ev h3 { margin: 0 0 .2rem; font-size: 1rem; }
+    .ev .who { font-size: .85rem; color: var(--muted); }
+    .ev p { margin: .4rem 0 0; }
+    .term-chip { display: inline-block; font-size: .78rem; padding: .05rem .5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); text-decoration: none; margin: .4rem .25rem 0 0; }
+    .term-chip.ghost { background: transparent; border: 1px dashed var(--muted); color: var(--muted); }
+    .placeholder { border: 2px dashed var(--border); border-radius: var(--radius); padding: 1.2rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../">Chem<span>Tools</span></a>
+      <nav style="display:flex;gap:1.1rem"><a href="../glossary/">Glossary</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <div class="crumbs"><a href="../../">All tools</a> · Chapter 1: Essential Ideas</div>
+      <h1>Timeline</h1>
+      <p class="muted">How our understanding of matter developed, from ancient crafts to modern chemistry.</p>
+    </div>
+
+    <section class="panel">
+      <div class="row">
+        <div style="flex:1 1 240px">
+          <label for="q">Search</label>
+          <input id="q" type="search" placeholder="People, ideas, events…" style="width:100%" />
+        </div>
+        <div>
+          <label for="field">Field</label>
+          <select id="field"><option value="">All</option></select>
+        </div>
+        <label style="display:flex;gap:.4rem;align-items:center;margin:0 0 .6rem;font-weight:500">
+          <input id="keyonly" type="checkbox" /> Key moments only
+        </label>
+      </div>
+    </section>
+
+    <div id="list"><p class="muted">Loading…</p></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Topics follow <a href="https://openstax.org/details/books/chemistry-2e">OpenStax Chemistry 2e</a> (Flowers, Theopold, Langley &amp; Robinson), licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. Access for free at <a href="https://openstax.org/books/chemistry-2e/pages/1-introduction">openstax.org/books/chemistry-2e/pages/1-introduction</a>. Text marked “Chemistry 2e” is quoted from the book; everything else is written by the site authors. Not affiliated with or endorsed by OpenStax.</div>
+  </footer>
+
+  <script type="module">
+    import { loadTerms, fieldColors, slug, escapeHtml as h } from "../../assets/js/terms.js";
+    import { md } from "../../assets/js/md.js";
+
+    const $ = (id) => document.getElementById(id);
+    const { terms } = await loadTerms().catch(() => ({ terms: new Map() }));
+    const colors = fieldColors(terms);
+
+    // ---- parse data/timeline.md ----
+    function parseYear(s) {
+      const m = s.match(/^\s*(c\.|ca\.|~|circa)?\s*(\d+)(s)?\s*(BCE|BC|CE|AD)?/i);
+      if (!m) return null;
+      let y = Number(m[2]);
+      if (/^B/i.test(m[4] || "")) y = -y;
+      return { value: y, label: s.trim(), approx: !!m[1] || !!m[3] };
+    }
+    function parseTimeline(text) {
+      const clean = text.replace(/<!--[\s\S]*?-->/g, "");
+      const events = [], warnings = [];
+      let cur = null;
+      for (const line of clean.split(/\r?\n/)) {
+        const head = line.match(/^##\s+(.+?)\s*(?:—|–|-|\||:)\s+(.+?)\s*$/) || line.match(/^##\s+(.+?)\s*$/);
+        if (head && line.startsWith("##")) {
+          const year = parseYear(head[1]);
+          if (!year) { warnings.push(`Couldn't read a year in "${line}"`); cur = null; continue; }
+          cur = { year, title: head[2] || "", who: "", field: "", terms: [], era: "", key: "", body: [] };
+          events.push(cur);
+          continue;
+        }
+        if (!cur) continue;
+        const kv = line.match(/^(who|field|terms|era|key):\s*(.*)$/i);
+        if (kv && !cur.body.length) {
+          const k = kv[1].toLowerCase();
+          cur[k] = k === "terms" ? kv[2].split(",").map((s) => s.trim()).filter(Boolean) : kv[2].trim();
+          continue;
+        }
+        cur.body.push(line);
+      }
+      events.forEach((e) => { e.isKey = /^(y|yes|true|1|★)/i.test(e.key); e.body = e.body.join("\n").trim(); e.id = "y" + String(e.year.value).replace("-", "m") + "-" + slug(e.title).slice(0, 40); });
+      events.sort((a, b) => a.year.value - b.year.value);
+      return { events, warnings };
+    }
+    const ordinal = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+    function autoEra(y) {
+      if (y < 500) return "Ancient world";
+      if (y < 1500) return "Medieval & alchemy";
+      return `${ordinal(Math.floor(y / 100) + 1)} century`;
+    }
+
+    const res = await fetch("../../data/timeline.md", { cache: "no-cache" });
+    const { events, warnings } = parseTimeline(res.ok ? await res.text() : "");
+
+    $("field").innerHTML += [...colors.keys()].map((f) => `<option value="${f}">${h(terms.get(f).name)}</option>`).join("");
+
+    function chips(list) {
+      return list.map((name) => {
+        const t = terms.get(slug(name));
+        const ghost = !t || t.ghost || !t.definition;
+        return `<a class="term-chip ${ghost ? "ghost" : ""}" href="../glossary/#${slug(name)}" title="${h(t?.definition || "Not in the glossary yet")}">${h(t?.name || name)}</a>`;
+      }).join("");
+    }
+
+    function render() {
+      if (!events.length) {
+        $("list").innerHTML = `<div class="placeholder"><p><b>No events yet.</b> Add them to <code>data/timeline.md</code> — the format is at the top of that file.</p>
+          ${warnings.length ? `<ul>${warnings.map((w) => `<li>${h(w)}</li>`).join("")}</ul>` : ""}</div>`;
+        return;
+      }
+      const q = $("q").value.trim().toLowerCase(), f = $("field").value, keyOnly = $("keyonly").checked;
+      const shown = events.filter((e) =>
+        (!keyOnly || e.isKey) &&
+        (!f || slug(e.field) === f) &&
+        (!q || `${e.year.label} ${e.title} ${e.who} ${e.body} ${e.terms.join(" ")}`.toLowerCase().includes(q)));
+      let html = "", era = null;
+      for (const e of shown) {
+        const label = e.era || autoEra(e.year.value);
+        if (label !== era) { if (era !== null) html += "</div>"; era = label; html += `<h2 class="era">${h(label)}</h2><div class="tl">`; }
+        html += `
+          <article class="ev ${e.isKey ? "key" : ""}" id="${e.id}" style="--dot:${colors.get(slug(e.field)) || "var(--accent)"}">
+            <span class="year">${h(e.year.label)}</span>
+            <h3>${e.isKey ? "★ " : ""}${h(e.title)}</h3>
+            ${e.who ? `<div class="who">${h(e.who)}</div>` : ""}
+            ${e.body ? md(e.body) : ""}
+            ${e.terms.length ? `<div>${chips(e.terms)}</div>` : ""}
+          </article>`;
+      }
+      if (era !== null) html += "</div>";
+      if (warnings.length) html += `<section class="panel"><b>Formatting notes</b><ul>${warnings.map((w) => `<li>${h(w)}</li>`).join("")}</ul></section>`;
+      $("list").innerHTML = shown.length ? html : `<p class="muted">No events match.</p>`;
+    }
+
+    ["q", "field", "keyonly"].forEach((id) => $(id).addEventListener("input", render));
+    render();
+    if (location.hash) {
+      const el = document.getElementById(location.hash.slice(1));
+      if (el) { el.scrollIntoView({ behavior: "smooth" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); }
+    }
+  </script>
+</body>
+</html>
