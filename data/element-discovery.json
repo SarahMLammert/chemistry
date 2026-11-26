@@ -1,0 +1,2076 @@
+[
+ {
+  "z": 1,
+  "symbol": "H",
+  "name": "Hydrogen",
+  "year": 1766,
+  "who": "Henry Cavendish",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Robert Boyle made the gas in 1671, but Cavendish recognized it as a distinct substance.",
+  "row": 1,
+  "col": 1
+ },
+ {
+  "z": 2,
+  "symbol": "He",
+  "name": "Helium",
+  "year": 1868,
+  "who": "Norman Lockyer, Pierre Janssen",
+  "places": [
+   {
+    "city": "Guntur (solar eclipse)",
+    "country": "India",
+    "lat": 16.31,
+    "lon": 80.44
+   },
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "First seen as a yellow line in the Sun's light during a solar eclipse, before anyone found it on Earth (1895).",
+  "row": 1,
+  "col": 18
+ },
+ {
+  "z": 3,
+  "symbol": "Li",
+  "name": "Lithium",
+  "year": 1817,
+  "who": "Johan August Arfwedson",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Found in a mineral from the Swedish island of Utö; isolated in 1821.",
+  "row": 2,
+  "col": 1
+ },
+ {
+  "z": 4,
+  "symbol": "Be",
+  "name": "Beryllium",
+  "year": 1798,
+  "who": "Louis-Nicolas Vauquelin",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Found in beryl and emerald; isolated in 1828.",
+  "row": 2,
+  "col": 2
+ },
+ {
+  "z": 5,
+  "symbol": "B",
+  "name": "Boron",
+  "year": 1808,
+  "who": "Joseph Louis Gay-Lussac, Louis Jacques Thénard, Humphry Davy",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   },
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Its compounds were recognized as containing a new element in 1787; it was isolated in Paris and London in 1808.",
+  "row": 2,
+  "col": 13
+ },
+ {
+  "z": 6,
+  "symbol": "C",
+  "name": "Carbon",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since prehistoric times as charcoal and soot.",
+  "row": 2,
+  "col": 14
+ },
+ {
+  "z": 7,
+  "symbol": "N",
+  "name": "Nitrogen",
+  "year": 1772,
+  "who": "Daniel Rutherford",
+  "places": [
+   {
+    "city": "Edinburgh",
+    "country": "Scotland",
+    "lat": 55.95,
+    "lon": -3.19
+   }
+  ],
+  "note": "Called 'noxious air' because it didn't support burning or breathing.",
+  "row": 2,
+  "col": 15
+ },
+ {
+  "z": 8,
+  "symbol": "O",
+  "name": "Oxygen",
+  "year": 1771,
+  "who": "Carl Wilhelm Scheele, Joseph Priestley",
+  "places": [
+   {
+    "city": "Uppsala",
+    "country": "Sweden",
+    "lat": 59.86,
+    "lon": 17.64
+   }
+  ],
+  "note": "Scheele made it around 1771; Priestley published first, in 1774. Lavoisier named it.",
+  "row": 2,
+  "col": 16
+ },
+ {
+  "z": 9,
+  "symbol": "F",
+  "name": "Fluorine",
+  "year": 1886,
+  "who": "Henri Moissan",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Scheele made hydrofluoric acid in 1771 and it was recognized as an element in 1810, but it is so reactive it took until 1886 to isolate.",
+  "row": 2,
+  "col": 17
+ },
+ {
+  "z": 10,
+  "symbol": "Ne",
+  "name": "Neon",
+  "year": 1898,
+  "who": "William Ramsay, Morris Travers",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Found by cooling and separating liquid air.",
+  "row": 2,
+  "col": 18
+ },
+ {
+  "z": 11,
+  "symbol": "Na",
+  "name": "Sodium",
+  "year": 1807,
+  "who": "Humphry Davy",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Its compounds were known long before (Georg Stahl suspected a difference from potash in 1702); Davy isolated it by passing electricity through melted caustic soda.",
+  "row": 3,
+  "col": 1
+ },
+ {
+  "z": 12,
+  "symbol": "Mg",
+  "name": "Magnesium",
+  "year": 1755,
+  "who": "Joseph Black",
+  "places": [
+   {
+    "city": "Edinburgh",
+    "country": "Scotland",
+    "lat": 55.95,
+    "lon": -3.19
+   }
+  ],
+  "note": "Recognized as an element by Black; isolated by Humphry Davy in 1808.",
+  "row": 3,
+  "col": 2
+ },
+ {
+  "z": 13,
+  "symbol": "Al",
+  "name": "Aluminium",
+  "year": 1825,
+  "who": "Hans Christian Ørsted",
+  "places": [
+   {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.68,
+    "lon": 12.57
+   }
+  ],
+  "note": "Its oxide was described in 1746, but the metal wasn't isolated until 1825. Once so hard to produce it was more valuable than gold.",
+  "row": 3,
+  "col": 13
+ },
+ {
+  "z": 14,
+  "symbol": "Si",
+  "name": "Silicon",
+  "year": 1824,
+  "who": "Jöns Jacob Berzelius",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Suspected as an element in the 1700s, isolated by Berzelius in 1824. Second most common element in Earth's crust.",
+  "row": 3,
+  "col": 14
+ },
+ {
+  "z": 15,
+  "symbol": "P",
+  "name": "Phosphorus",
+  "year": 1669,
+  "who": "Hennig Brand",
+  "places": [
+   {
+    "city": "Hamburg",
+    "country": "Germany",
+    "lat": 53.55,
+    "lon": 9.99
+   }
+  ],
+  "note": "The first element with a known discoverer: Brand boiled down urine looking for gold.",
+  "row": 3,
+  "col": 15
+ },
+ {
+  "z": 16,
+  "symbol": "S",
+  "name": "Sulfur",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; called 'brimstone'.",
+  "row": 3,
+  "col": 16
+ },
+ {
+  "z": 17,
+  "symbol": "Cl",
+  "name": "Chlorine",
+  "year": 1774,
+  "who": "Carl Wilhelm Scheele",
+  "places": [
+   {
+    "city": "Uppsala",
+    "country": "Sweden",
+    "lat": 59.86,
+    "lon": 17.64
+   }
+  ],
+  "note": "Humphry Davy showed it was an element in 1810.",
+  "row": 3,
+  "col": 17
+ },
+ {
+  "z": 18,
+  "symbol": "Ar",
+  "name": "Argon",
+  "year": 1894,
+  "who": "Lord Rayleigh, William Ramsay",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "The first noble gas found; it makes up about 1% of air.",
+  "row": 3,
+  "col": 18
+ },
+ {
+  "z": 19,
+  "symbol": "K",
+  "name": "Potassium",
+  "year": 1807,
+  "who": "Humphry Davy",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Its compounds were known long before; Davy isolated it a few days before sodium, by passing electricity through melted potash.",
+  "row": 4,
+  "col": 1
+ },
+ {
+  "z": 20,
+  "symbol": "Ca",
+  "name": "Calcium",
+  "year": 1808,
+  "who": "Humphry Davy",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Lime was used for thousands of years; Davy isolated the metal by electrolysis, like sodium and potassium.",
+  "row": 4,
+  "col": 2
+ },
+ {
+  "z": 21,
+  "symbol": "Sc",
+  "name": "Scandium",
+  "year": 1879,
+  "who": "Lars Fredrik Nilson",
+  "places": [
+   {
+    "city": "Uppsala",
+    "country": "Sweden",
+    "lat": 59.86,
+    "lon": 17.64
+   }
+  ],
+  "note": "One of the elements Mendeleev predicted ('eka-boron').",
+  "row": 4,
+  "col": 3
+ },
+ {
+  "z": 22,
+  "symbol": "Ti",
+  "name": "Titanium",
+  "year": 1791,
+  "who": "William Gregor",
+  "places": [
+   {
+    "city": "Creed, Cornwall",
+    "country": "England",
+    "lat": 50.27,
+    "lon": -4.92
+   }
+  ],
+  "note": "Found by a clergyman in black sand from a Cornish stream.",
+  "row": 4,
+  "col": 4
+ },
+ {
+  "z": 23,
+  "symbol": "V",
+  "name": "Vanadium",
+  "year": 1801,
+  "who": "Andrés Manuel del Río",
+  "places": [
+   {
+    "city": "Mexico City",
+    "country": "Mexico",
+    "lat": 19.43,
+    "lon": -99.13
+   }
+  ],
+  "note": "Del Río's claim was doubted; Nils Sefström rediscovered it in Sweden in 1830.",
+  "row": 4,
+  "col": 5
+ },
+ {
+  "z": 24,
+  "symbol": "Cr",
+  "name": "Chromium",
+  "year": 1797,
+  "who": "Louis-Nicolas Vauquelin",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Named from the Greek for 'color' because its compounds are so colorful.",
+  "row": 4,
+  "col": 6
+ },
+ {
+  "z": 25,
+  "symbol": "Mn",
+  "name": "Manganese",
+  "year": 1774,
+  "who": "Johan Gottlieb Gahn",
+  "places": [
+   {
+    "city": "Falun",
+    "country": "Sweden",
+    "lat": 60.61,
+    "lon": 15.63
+   }
+  ],
+  "note": "Torbern Bergman recognized it as a new element around 1770; Gahn reduced the mineral pyrolusite with carbon to get the metal.",
+  "row": 4,
+  "col": 7
+ },
+ {
+  "z": 26,
+  "symbol": "Fe",
+  "name": "Iron",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; first from meteorites, later smelted from ore.",
+  "row": 4,
+  "col": 8
+ },
+ {
+  "z": 27,
+  "symbol": "Co",
+  "name": "Cobalt",
+  "year": 1735,
+  "who": "Georg Brandt",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "The first metal discovered with a known discoverer; it gives glass a deep blue color.",
+  "row": 4,
+  "col": 9
+ },
+ {
+  "z": 28,
+  "symbol": "Ni",
+  "name": "Nickel",
+  "year": 1751,
+  "who": "Axel Fredrik Cronstedt",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Miners called its ore 'Kupfernickel', copper-demon.",
+  "row": 4,
+  "col": 10
+ },
+ {
+  "z": 29,
+  "symbol": "Cu",
+  "name": "Copper",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "One of the first metals people used, more than 10,000 years ago.",
+  "row": 4,
+  "col": 11
+ },
+ {
+  "z": 30,
+  "symbol": "Zn",
+  "name": "Zinc",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Zinc metal was made in India by the 1200s; Andreas Marggraf isolated it in Europe in 1746.",
+  "row": 4,
+  "col": 12
+ },
+ {
+  "z": 31,
+  "symbol": "Ga",
+  "name": "Gallium",
+  "year": 1875,
+  "who": "Paul-Émile Lecoq de Boisbaudran",
+  "places": [
+   {
+    "city": "Cognac",
+    "country": "France",
+    "lat": 45.7,
+    "lon": -0.33
+   },
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Detected by its spectrum in Cognac, then isolated in Paris. Mendeleev had predicted it ('eka-aluminium').",
+  "row": 4,
+  "col": 13
+ },
+ {
+  "z": 32,
+  "symbol": "Ge",
+  "name": "Germanium",
+  "year": 1886,
+  "who": "Clemens Winkler",
+  "places": [
+   {
+    "city": "Freiberg",
+    "country": "Germany",
+    "lat": 50.92,
+    "lon": 13.34
+   }
+  ],
+  "note": "Another of Mendeleev's predicted elements ('eka-silicon').",
+  "row": 4,
+  "col": 14
+ },
+ {
+  "z": 33,
+  "symbol": "As",
+  "name": "Arsenic",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; isolated around 1250, often credited to Albertus Magnus.",
+  "row": 4,
+  "col": 15
+ },
+ {
+  "z": 34,
+  "symbol": "Se",
+  "name": "Selenium",
+  "year": 1817,
+  "who": "Jöns Jacob Berzelius, Johan Gottlieb Gahn",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Named after the Moon (Greek 'selene'), as a partner to tellurium (Earth).",
+  "row": 4,
+  "col": 16
+ },
+ {
+  "z": 35,
+  "symbol": "Br",
+  "name": "Bromine",
+  "year": 1825,
+  "who": "Antoine Jérôme Balard, Carl Löwig",
+  "places": [
+   {
+    "city": "Montpellier",
+    "country": "France",
+    "lat": 43.61,
+    "lon": 3.88
+   },
+   {
+    "city": "Heidelberg",
+    "country": "Germany",
+    "lat": 49.4,
+    "lon": 8.69
+   }
+  ],
+  "note": "Found independently in seaweed ash (Balard) and spring water (Löwig).",
+  "row": 4,
+  "col": 17
+ },
+ {
+  "z": 36,
+  "symbol": "Kr",
+  "name": "Krypton",
+  "year": 1898,
+  "who": "William Ramsay, Morris Travers",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Name means 'hidden'.",
+  "row": 4,
+  "col": 18
+ },
+ {
+  "z": 37,
+  "symbol": "Rb",
+  "name": "Rubidium",
+  "year": 1861,
+  "who": "Robert Bunsen, Gustav Kirchhoff",
+  "places": [
+   {
+    "city": "Heidelberg",
+    "country": "Germany",
+    "lat": 49.4,
+    "lon": 8.69
+   }
+  ],
+  "note": "Found with the new spectroscope; named for its deep red spectral lines.",
+  "row": 5,
+  "col": 1
+ },
+ {
+  "z": 38,
+  "symbol": "Sr",
+  "name": "Strontium",
+  "year": 1790,
+  "who": "Adair Crawford, William Cruickshank",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Named after Strontian, the Scottish village where its mineral was mined. Isolated by Davy in 1808.",
+  "row": 5,
+  "col": 2
+ },
+ {
+  "z": 39,
+  "symbol": "Y",
+  "name": "Yttrium",
+  "year": 1794,
+  "who": "Johan Gadolin",
+  "places": [
+   {
+    "city": "Turku",
+    "country": "Finland",
+    "lat": 60.45,
+    "lon": 22.27
+   }
+  ],
+  "note": "From a mineral found at Ytterby, Sweden, which also gave its name to Yb, Tb and Er.",
+  "row": 5,
+  "col": 3
+ },
+ {
+  "z": 40,
+  "symbol": "Zr",
+  "name": "Zirconium",
+  "year": 1789,
+  "who": "Martin Heinrich Klaproth",
+  "places": [
+   {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.4
+   }
+  ],
+  "note": "Found in the gemstone zircon; isolated by Berzelius in 1824.",
+  "row": 5,
+  "col": 4
+ },
+ {
+  "z": 41,
+  "symbol": "Nb",
+  "name": "Niobium",
+  "year": 1801,
+  "who": "Charles Hatchett",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Hatchett called it columbium, from a mineral sample sent from North America.",
+  "row": 5,
+  "col": 5
+ },
+ {
+  "z": 42,
+  "symbol": "Mo",
+  "name": "Molybdenum",
+  "year": 1778,
+  "who": "Carl Wilhelm Scheele",
+  "places": [
+   {
+    "city": "Köping",
+    "country": "Sweden",
+    "lat": 59.51,
+    "lon": 15.99
+   }
+  ],
+  "note": "Isolated by Peter Jacob Hjelm a few years later.",
+  "row": 5,
+  "col": 6
+ },
+ {
+  "z": 43,
+  "symbol": "Tc",
+  "name": "Technetium",
+  "year": 1937,
+  "who": "Carlo Perrier, Emilio Segrè",
+  "places": [
+   {
+    "city": "Palermo",
+    "country": "Italy",
+    "lat": 38.12,
+    "lon": 13.36
+   }
+  ],
+  "note": "The first element made artificially; name means 'artificial'.",
+  "row": 5,
+  "col": 7
+ },
+ {
+  "z": 44,
+  "symbol": "Ru",
+  "name": "Ruthenium",
+  "year": 1844,
+  "who": "Karl Ernst Claus",
+  "places": [
+   {
+    "city": "Kazan",
+    "country": "Russia",
+    "lat": 55.79,
+    "lon": 49.12
+   }
+  ],
+  "note": "Named after Ruthenia, a Latin name for Russia.",
+  "row": 5,
+  "col": 8
+ },
+ {
+  "z": 45,
+  "symbol": "Rh",
+  "name": "Rhodium",
+  "year": 1804,
+  "who": "William Hyde Wollaston",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Named from the Greek for 'rose' because of its rose-colored salts.",
+  "row": 5,
+  "col": 9
+ },
+ {
+  "z": 46,
+  "symbol": "Pd",
+  "name": "Palladium",
+  "year": 1802,
+  "who": "William Hyde Wollaston",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Named after the asteroid Pallas, discovered the same year.",
+  "row": 5,
+  "col": 10
+ },
+ {
+  "z": 47,
+  "symbol": "Ag",
+  "name": "Silver",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times.",
+  "row": 5,
+  "col": 11
+ },
+ {
+  "z": 48,
+  "symbol": "Cd",
+  "name": "Cadmium",
+  "year": 1817,
+  "who": "Friedrich Stromeyer",
+  "places": [
+   {
+    "city": "Göttingen",
+    "country": "Germany",
+    "lat": 51.54,
+    "lon": 9.93
+   }
+  ],
+  "note": "Found as an impurity in zinc carbonate.",
+  "row": 5,
+  "col": 12
+ },
+ {
+  "z": 49,
+  "symbol": "In",
+  "name": "Indium",
+  "year": 1863,
+  "who": "Ferdinand Reich, Hieronymous Theodor Richter",
+  "places": [
+   {
+    "city": "Freiberg",
+    "country": "Germany",
+    "lat": 50.92,
+    "lon": 13.34
+   }
+  ],
+  "note": "Named for the indigo-blue line in its spectrum.",
+  "row": 5,
+  "col": 13
+ },
+ {
+  "z": 50,
+  "symbol": "Sn",
+  "name": "Tin",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; mixed with copper to make bronze.",
+  "row": 5,
+  "col": 14
+ },
+ {
+  "z": 51,
+  "symbol": "Sb",
+  "name": "Antimony",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; used in eye makeup in ancient Egypt.",
+  "row": 5,
+  "col": 15
+ },
+ {
+  "z": 52,
+  "symbol": "Te",
+  "name": "Tellurium",
+  "year": 1782,
+  "who": "Franz-Joseph Müller von Reichenstein",
+  "places": [
+   {
+    "city": "Sibiu",
+    "country": "Romania",
+    "lat": 45.79,
+    "lon": 24.15
+   }
+  ],
+  "note": "Named after the Earth (Latin 'tellus'). Klaproth confirmed it in 1798.",
+  "row": 5,
+  "col": 16
+ },
+ {
+  "z": 53,
+  "symbol": "I",
+  "name": "Iodine",
+  "year": 1811,
+  "who": "Bernard Courtois",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Found in seaweed ash while making saltpeter for gunpowder.",
+  "row": 5,
+  "col": 17
+ },
+ {
+  "z": 54,
+  "symbol": "Xe",
+  "name": "Xenon",
+  "year": 1898,
+  "who": "William Ramsay, Morris Travers",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Name means 'stranger'.",
+  "row": 5,
+  "col": 18
+ },
+ {
+  "z": 55,
+  "symbol": "Cs",
+  "name": "Caesium",
+  "year": 1860,
+  "who": "Robert Bunsen, Gustav Kirchhoff",
+  "places": [
+   {
+    "city": "Heidelberg",
+    "country": "Germany",
+    "lat": 49.4,
+    "lon": 8.69
+   }
+  ],
+  "note": "The first element found with a spectroscope; named for its sky-blue lines.",
+  "row": 6,
+  "col": 1
+ },
+ {
+  "z": 56,
+  "symbol": "Ba",
+  "name": "Barium",
+  "year": 1772,
+  "who": "Carl Wilhelm Scheele",
+  "places": [
+   {
+    "city": "Uppsala",
+    "country": "Sweden",
+    "lat": 59.86,
+    "lon": 17.64
+   }
+  ],
+  "note": "Isolated by Humphry Davy in 1808.",
+  "row": 6,
+  "col": 2
+ },
+ {
+  "z": 57,
+  "symbol": "La",
+  "name": "Lanthanum",
+  "year": 1838,
+  "who": "Carl Gustaf Mosander",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Name means 'to lie hidden', because it hid inside cerium minerals.",
+  "row": 9,
+  "col": 3
+ },
+ {
+  "z": 58,
+  "symbol": "Ce",
+  "name": "Cerium",
+  "year": 1803,
+  "who": "Jöns Jacob Berzelius, Wilhelm Hisinger, Martin Heinrich Klaproth",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   },
+   {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.4
+   }
+  ],
+  "note": "Found independently in Sweden and Germany; named after the dwarf planet Ceres.",
+  "row": 9,
+  "col": 4
+ },
+ {
+  "z": 59,
+  "symbol": "Pr",
+  "name": "Praseodymium",
+  "year": 1885,
+  "who": "Carl Auer von Welsbach",
+  "places": [
+   {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.21,
+    "lon": 16.37
+   }
+  ],
+  "note": "Separated from 'didymium', which turned out to be two elements.",
+  "row": 9,
+  "col": 5
+ },
+ {
+  "z": 60,
+  "symbol": "Nd",
+  "name": "Neodymium",
+  "year": 1885,
+  "who": "Carl Auer von Welsbach",
+  "places": [
+   {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.21,
+    "lon": 16.37
+   }
+  ],
+  "note": "Mosander found 'didymium' in 1841; in 1885 it turned out to be two elements. Used today in strong magnets.",
+  "row": 9,
+  "col": 6
+ },
+ {
+  "z": 61,
+  "symbol": "Pm",
+  "name": "Promethium",
+  "year": 1945,
+  "who": "Jacob A. Marinsky, Lawrence E. Glendenin, Charles D. Coryell",
+  "places": [
+   {
+    "city": "Oak Ridge",
+    "country": "USA",
+    "lat": 36.01,
+    "lon": -84.27
+   }
+  ],
+  "note": "Found in uranium fission products; named after Prometheus.",
+  "row": 9,
+  "col": 7
+ },
+ {
+  "z": 62,
+  "symbol": "Sm",
+  "name": "Samarium",
+  "year": 1879,
+  "who": "Paul-Émile Lecoq de Boisbaudran",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Named after the mineral samarskite, itself named after a person.",
+  "row": 9,
+  "col": 8
+ },
+ {
+  "z": 63,
+  "symbol": "Eu",
+  "name": "Europium",
+  "year": 1896,
+  "who": "Eugène-Anatole Demarçay",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Named after Europe; isolated in pure form in 1901.",
+  "row": 9,
+  "col": 9
+ },
+ {
+  "z": 64,
+  "symbol": "Gd",
+  "name": "Gadolinium",
+  "year": 1880,
+  "who": "Jean Charles Galissard de Marignac",
+  "places": [
+   {
+    "city": "Geneva",
+    "country": "Switzerland",
+    "lat": 46.2,
+    "lon": 6.15
+   }
+  ],
+  "note": "Named after Johan Gadolin, who discovered yttrium.",
+  "row": 9,
+  "col": 10
+ },
+ {
+  "z": 65,
+  "symbol": "Tb",
+  "name": "Terbium",
+  "year": 1843,
+  "who": "Carl Gustaf Mosander",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Named after Ytterby, Sweden.",
+  "row": 9,
+  "col": 11
+ },
+ {
+  "z": 66,
+  "symbol": "Dy",
+  "name": "Dysprosium",
+  "year": 1886,
+  "who": "Paul-Émile Lecoq de Boisbaudran",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Name means 'hard to get'.",
+  "row": 9,
+  "col": 12
+ },
+ {
+  "z": 67,
+  "symbol": "Ho",
+  "name": "Holmium",
+  "year": 1878,
+  "who": "Jacques-Louis Soret, Marc Delafontaine",
+  "places": [
+   {
+    "city": "Geneva",
+    "country": "Switzerland",
+    "lat": 46.2,
+    "lon": 6.15
+   }
+  ],
+  "note": "Per Teodor Cleve found it independently in 1879 and named it after Stockholm (Holmia).",
+  "row": 9,
+  "col": 13
+ },
+ {
+  "z": 68,
+  "symbol": "Er",
+  "name": "Erbium",
+  "year": 1843,
+  "who": "Carl Gustaf Mosander",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Named after Ytterby, Sweden.",
+  "row": 9,
+  "col": 14
+ },
+ {
+  "z": 69,
+  "symbol": "Tm",
+  "name": "Thulium",
+  "year": 1879,
+  "who": "Per Teodor Cleve",
+  "places": [
+   {
+    "city": "Uppsala",
+    "country": "Sweden",
+    "lat": 59.86,
+    "lon": 17.64
+   }
+  ],
+  "note": "Named after Thule, an old name for the far north.",
+  "row": 9,
+  "col": 15
+ },
+ {
+  "z": 70,
+  "symbol": "Yb",
+  "name": "Ytterbium",
+  "year": 1878,
+  "who": "Jean Charles Galissard de Marignac",
+  "places": [
+   {
+    "city": "Geneva",
+    "country": "Switzerland",
+    "lat": 46.2,
+    "lon": 6.15
+   }
+  ],
+  "note": "Named after Ytterby, Sweden.",
+  "row": 9,
+  "col": 16
+ },
+ {
+  "z": 71,
+  "symbol": "Lu",
+  "name": "Lutetium",
+  "year": 1907,
+  "who": "Georges Urbain, Carl Auer von Welsbach",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   },
+   {
+    "city": "Vienna",
+    "country": "Austria",
+    "lat": 48.21,
+    "lon": 16.37
+   }
+  ],
+  "note": "Found independently in Paris and Vienna; named after Lutetia, the Roman name for Paris.",
+  "row": 9,
+  "col": 17
+ },
+ {
+  "z": 72,
+  "symbol": "Hf",
+  "name": "Hafnium",
+  "year": 1923,
+  "who": "Dirk Coster, George de Hevesy",
+  "places": [
+   {
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "lat": 55.68,
+    "lon": 12.57
+   }
+  ],
+  "note": "Named after Hafnia, the Latin name for Copenhagen.",
+  "row": 6,
+  "col": 4
+ },
+ {
+  "z": 73,
+  "symbol": "Ta",
+  "name": "Tantalum",
+  "year": 1802,
+  "who": "Anders Gustaf Ekeberg",
+  "places": [
+   {
+    "city": "Uppsala",
+    "country": "Sweden",
+    "lat": 59.86,
+    "lon": 17.64
+   }
+  ],
+  "note": "Named after Tantalus from Greek myth.",
+  "row": 6,
+  "col": 5
+ },
+ {
+  "z": 74,
+  "symbol": "W",
+  "name": "Tungsten",
+  "year": 1783,
+  "who": "Juan José and Fausto Elhuyar",
+  "places": [
+   {
+    "city": "Bergara",
+    "country": "Spain",
+    "lat": 43.12,
+    "lon": -2.41
+   }
+  ],
+  "note": "Scheele identified tungstic acid in 1781; the Elhuyar brothers isolated the metal.",
+  "row": 6,
+  "col": 6
+ },
+ {
+  "z": 75,
+  "symbol": "Re",
+  "name": "Rhenium",
+  "year": 1925,
+  "who": "Walter Noddack, Ida Tacke, Otto Berg",
+  "places": [
+   {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.4
+   }
+  ],
+  "note": "Named after the Rhine. Masataka Ogawa may have found it in Tokyo in 1908.",
+  "row": 6,
+  "col": 7
+ },
+ {
+  "z": 76,
+  "symbol": "Os",
+  "name": "Osmium",
+  "year": 1803,
+  "who": "Smithson Tennant",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Densest naturally occurring element.",
+  "row": 6,
+  "col": 8
+ },
+ {
+  "z": 77,
+  "symbol": "Ir",
+  "name": "Iridium",
+  "year": 1803,
+  "who": "Smithson Tennant",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Named after Iris, goddess of the rainbow, for its colorful salts.",
+  "row": 6,
+  "col": 9
+ },
+ {
+  "z": 78,
+  "symbol": "Pt",
+  "name": "Platinum",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Used in pre-Columbian South America; described in Europe by Antonio de Ulloa in 1748.",
+  "row": 6,
+  "col": 10
+ },
+ {
+  "z": 79,
+  "symbol": "Au",
+  "name": "Gold",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times.",
+  "row": 6,
+  "col": 11
+ },
+ {
+  "z": 80,
+  "symbol": "Hg",
+  "name": "Mercury",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; found in Egyptian tombs.",
+  "row": 6,
+  "col": 12
+ },
+ {
+  "z": 81,
+  "symbol": "Tl",
+  "name": "Thallium",
+  "year": 1861,
+  "who": "William Crookes",
+  "places": [
+   {
+    "city": "London",
+    "country": "England",
+    "lat": 51.51,
+    "lon": -0.13
+   }
+  ],
+  "note": "Named from the Greek for 'green shoot' after its green spectral line.",
+  "row": 6,
+  "col": 13
+ },
+ {
+  "z": 82,
+  "symbol": "Pb",
+  "name": "Lead",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known since ancient times; used by the Romans for water pipes.",
+  "row": 6,
+  "col": 14
+ },
+ {
+  "z": 83,
+  "symbol": "Bi",
+  "name": "Bismuth",
+  "year": null,
+  "who": "",
+  "places": [],
+  "note": "Known by the 1400s; recognized as an element by Claude François Geoffroy in 1753.",
+  "row": 6,
+  "col": 15
+ },
+ {
+  "z": 84,
+  "symbol": "Po",
+  "name": "Polonium",
+  "year": 1898,
+  "who": "Marie Curie, Pierre Curie",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Named after Poland, Marie Curie's home country.",
+  "row": 6,
+  "col": 16
+ },
+ {
+  "z": 85,
+  "symbol": "At",
+  "name": "Astatine",
+  "year": 1940,
+  "who": "Dale R. Corson, Kenneth MacKenzie, Emilio Segrè",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Name means 'unstable'; the rarest naturally occurring element.",
+  "row": 6,
+  "col": 17
+ },
+ {
+  "z": 86,
+  "symbol": "Rn",
+  "name": "Radon",
+  "year": 1899,
+  "who": "Ernest Rutherford, Robert B. Owens",
+  "places": [
+   {
+    "city": "Montreal",
+    "country": "Canada",
+    "lat": 45.5,
+    "lon": -73.57
+   }
+  ],
+  "note": "Friedrich Ernst Dorn also studied it in Halle, Germany, in 1900.",
+  "row": 6,
+  "col": 18
+ },
+ {
+  "z": 87,
+  "symbol": "Fr",
+  "name": "Francium",
+  "year": 1939,
+  "who": "Marguerite Perey",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "The last element discovered in nature; named after France.",
+  "row": 7,
+  "col": 1
+ },
+ {
+  "z": 88,
+  "symbol": "Ra",
+  "name": "Radium",
+  "year": 1898,
+  "who": "Marie Curie, Pierre Curie",
+  "places": [
+   {
+    "city": "Paris",
+    "country": "France",
+    "lat": 48.86,
+    "lon": 2.35
+   }
+  ],
+  "note": "Found in pitchblende; glows faintly in the dark.",
+  "row": 7,
+  "col": 2
+ },
+ {
+  "z": 89,
+  "symbol": "Ac",
+  "name": "Actinium",
+  "year": 1902,
+  "who": "Friedrich Oskar Giesel",
+  "places": [
+   {
+    "city": "Braunschweig",
+    "country": "Germany",
+    "lat": 52.27,
+    "lon": 10.52
+   }
+  ],
+  "note": "André-Louis Debierne reported a similar substance in Paris in 1899.",
+  "row": 10,
+  "col": 3
+ },
+ {
+  "z": 90,
+  "symbol": "Th",
+  "name": "Thorium",
+  "year": 1829,
+  "who": "Jöns Jacob Berzelius",
+  "places": [
+   {
+    "city": "Stockholm",
+    "country": "Sweden",
+    "lat": 59.33,
+    "lon": 18.07
+   }
+  ],
+  "note": "Named after Thor, the Norse god of thunder.",
+  "row": 10,
+  "col": 4
+ },
+ {
+  "z": 91,
+  "symbol": "Pa",
+  "name": "Protactinium",
+  "year": 1913,
+  "who": "Kasimir Fajans, Oswald Helmuth Göhring",
+  "places": [
+   {
+    "city": "Karlsruhe",
+    "country": "Germany",
+    "lat": 49.01,
+    "lon": 8.4
+   }
+  ],
+  "note": "A longer-lived form was found by Lise Meitner and Otto Hahn in 1917.",
+  "row": 10,
+  "col": 5
+ },
+ {
+  "z": 92,
+  "symbol": "U",
+  "name": "Uranium",
+  "year": 1789,
+  "who": "Martin Heinrich Klaproth",
+  "places": [
+   {
+    "city": "Berlin",
+    "country": "Germany",
+    "lat": 52.52,
+    "lon": 13.4
+   }
+  ],
+  "note": "Named after the planet Uranus, discovered a few years earlier.",
+  "row": 10,
+  "col": 6
+ },
+ {
+  "z": 93,
+  "symbol": "Np",
+  "name": "Neptunium",
+  "year": 1940,
+  "who": "Edwin McMillan, Philip Abelson",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "The first element heavier than uranium; named after Neptune.",
+  "row": 10,
+  "col": 7
+ },
+ {
+  "z": 94,
+  "symbol": "Pu",
+  "name": "Plutonium",
+  "year": 1941,
+  "who": "Glenn T. Seaborg and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Named after Pluto, following uranium and neptunium.",
+  "row": 10,
+  "col": 8
+ },
+ {
+  "z": 95,
+  "symbol": "Am",
+  "name": "Americium",
+  "year": 1944,
+  "who": "Glenn T. Seaborg and team",
+  "places": [
+   {
+    "city": "Chicago",
+    "country": "USA",
+    "lat": 41.79,
+    "lon": -87.6
+   }
+  ],
+  "note": "Named after the Americas; used today in smoke detectors.",
+  "row": 10,
+  "col": 9
+ },
+ {
+  "z": 96,
+  "symbol": "Cm",
+  "name": "Curium",
+  "year": 1944,
+  "who": "Glenn T. Seaborg and team",
+  "places": [
+   {
+    "city": "Chicago",
+    "country": "USA",
+    "lat": 41.79,
+    "lon": -87.6
+   }
+  ],
+  "note": "Named after Marie and Pierre Curie.",
+  "row": 10,
+  "col": 10
+ },
+ {
+  "z": 97,
+  "symbol": "Bk",
+  "name": "Berkelium",
+  "year": 1949,
+  "who": "Stanley Thompson, Albert Ghiorso, Glenn T. Seaborg",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Named after the city of Berkeley.",
+  "row": 10,
+  "col": 11
+ },
+ {
+  "z": 98,
+  "symbol": "Cf",
+  "name": "Californium",
+  "year": 1950,
+  "who": "Stanley Thompson, Kenneth Street Jr., Albert Ghiorso, Glenn T. Seaborg",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Named after California.",
+  "row": 10,
+  "col": 12
+ },
+ {
+  "z": 99,
+  "symbol": "Es",
+  "name": "Einsteinium",
+  "year": 1952,
+  "who": "Albert Ghiorso and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Found in debris from the first hydrogen bomb test; named after Albert Einstein.",
+  "row": 10,
+  "col": 13
+ },
+ {
+  "z": 100,
+  "symbol": "Fm",
+  "name": "Fermium",
+  "year": 1953,
+  "who": "Albert Ghiorso and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Also found in hydrogen bomb debris; named after Enrico Fermi.",
+  "row": 10,
+  "col": 14
+ },
+ {
+  "z": 101,
+  "symbol": "Md",
+  "name": "Mendelevium",
+  "year": 1955,
+  "who": "Albert Ghiorso and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Named after Dmitri Mendeleev, creator of the periodic table.",
+  "row": 10,
+  "col": 15
+ },
+ {
+  "z": 102,
+  "symbol": "No",
+  "name": "Nobelium",
+  "year": 1965,
+  "who": "Evgeny Donets and team",
+  "places": [
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Named after Alfred Nobel; its discovery was disputed for years.",
+  "row": 10,
+  "col": 16
+ },
+ {
+  "z": 103,
+  "symbol": "Lr",
+  "name": "Lawrencium",
+  "year": 1961,
+  "who": "Albert Ghiorso and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Named after Ernest Lawrence, inventor of the cyclotron.",
+  "row": 10,
+  "col": 17
+ },
+ {
+  "z": 104,
+  "symbol": "Rf",
+  "name": "Rutherfordium",
+  "year": 1969,
+  "who": "Albert Ghiorso and team; Ivo Zvara and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   },
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Credit is shared between labs in the USA and the Soviet Union.",
+  "row": 7,
+  "col": 4
+ },
+ {
+  "z": 105,
+  "symbol": "Db",
+  "name": "Dubnium",
+  "year": 1970,
+  "who": "Albert Ghiorso and team; Vladimir Druin and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   },
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Credit is shared; named after Dubna, Russia.",
+  "row": 7,
+  "col": 5
+ },
+ {
+  "z": 106,
+  "symbol": "Sg",
+  "name": "Seaborgium",
+  "year": 1974,
+  "who": "Albert Ghiorso and team",
+  "places": [
+   {
+    "city": "Berkeley",
+    "country": "USA",
+    "lat": 37.87,
+    "lon": -122.27
+   }
+  ],
+  "note": "Named after Glenn Seaborg, who was alive at the time.",
+  "row": 7,
+  "col": 6
+ },
+ {
+  "z": 107,
+  "symbol": "Bh",
+  "name": "Bohrium",
+  "year": 1981,
+  "who": "Peter Armbruster, Gottfried Münzenberg and team",
+  "places": [
+   {
+    "city": "Darmstadt (GSI)",
+    "country": "Germany",
+    "lat": 49.93,
+    "lon": 8.68
+   }
+  ],
+  "note": "Named after physicist Niels Bohr.",
+  "row": 7,
+  "col": 7
+ },
+ {
+  "z": 108,
+  "symbol": "Hs",
+  "name": "Hassium",
+  "year": 1984,
+  "who": "Peter Armbruster, Gottfried Münzenberg and team",
+  "places": [
+   {
+    "city": "Darmstadt (GSI)",
+    "country": "Germany",
+    "lat": 49.93,
+    "lon": 8.68
+   }
+  ],
+  "note": "Named after Hesse, the German state where it was made.",
+  "row": 7,
+  "col": 8
+ },
+ {
+  "z": 109,
+  "symbol": "Mt",
+  "name": "Meitnerium",
+  "year": 1982,
+  "who": "Peter Armbruster, Gottfried Münzenberg and team",
+  "places": [
+   {
+    "city": "Darmstadt (GSI)",
+    "country": "Germany",
+    "lat": 49.93,
+    "lon": 8.68
+   }
+  ],
+  "note": "Named after physicist Lise Meitner.",
+  "row": 7,
+  "col": 9
+ },
+ {
+  "z": 110,
+  "symbol": "Ds",
+  "name": "Darmstadtium",
+  "year": 1994,
+  "who": "Sigurd Hofmann and team",
+  "places": [
+   {
+    "city": "Darmstadt (GSI)",
+    "country": "Germany",
+    "lat": 49.93,
+    "lon": 8.68
+   }
+  ],
+  "note": "Named after the city of Darmstadt.",
+  "row": 7,
+  "col": 10
+ },
+ {
+  "z": 111,
+  "symbol": "Rg",
+  "name": "Roentgenium",
+  "year": 1994,
+  "who": "Sigurd Hofmann and team",
+  "places": [
+   {
+    "city": "Darmstadt (GSI)",
+    "country": "Germany",
+    "lat": 49.93,
+    "lon": 8.68
+   }
+  ],
+  "note": "Named after Wilhelm Röntgen, discoverer of X-rays.",
+  "row": 7,
+  "col": 11
+ },
+ {
+  "z": 112,
+  "symbol": "Cn",
+  "name": "Copernicium",
+  "year": 1996,
+  "who": "Sigurd Hofmann and team",
+  "places": [
+   {
+    "city": "Darmstadt (GSI)",
+    "country": "Germany",
+    "lat": 49.93,
+    "lon": 8.68
+   }
+  ],
+  "note": "Named after astronomer Nicolaus Copernicus.",
+  "row": 7,
+  "col": 12
+ },
+ {
+  "z": 113,
+  "symbol": "Nh",
+  "name": "Nihonium",
+  "year": 2004,
+  "who": "Kosuke Morita and team",
+  "places": [
+   {
+    "city": "Wako (RIKEN)",
+    "country": "Japan",
+    "lat": 35.78,
+    "lon": 139.61
+   }
+  ],
+  "note": "The first element discovered in Asia; 'Nihon' means Japan.",
+  "row": 7,
+  "col": 13
+ },
+ {
+  "z": 114,
+  "symbol": "Fl",
+  "name": "Flerovium",
+  "year": 1999,
+  "who": "Yuri Oganessian and team",
+  "places": [
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Named after the Flerov Laboratory in Dubna.",
+  "row": 7,
+  "col": 14
+ },
+ {
+  "z": 115,
+  "symbol": "Mc",
+  "name": "Moscovium",
+  "year": 2003,
+  "who": "Yuri Oganessian and team",
+  "places": [
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Named after the Moscow region.",
+  "row": 7,
+  "col": 15
+ },
+ {
+  "z": 116,
+  "symbol": "Lv",
+  "name": "Livermorium",
+  "year": 2000,
+  "who": "Yuri Oganessian and team",
+  "places": [
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Made with Lawrence Livermore National Laboratory (USA), which it's named after.",
+  "row": 7,
+  "col": 16
+ },
+ {
+  "z": 117,
+  "symbol": "Ts",
+  "name": "Tennessine",
+  "year": 2010,
+  "who": "Yuri Oganessian and team",
+  "places": [
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "Made with labs in Tennessee (USA), which supplied the target material.",
+  "row": 7,
+  "col": 17
+ },
+ {
+  "z": 118,
+  "symbol": "Og",
+  "name": "Oganesson",
+  "year": 2002,
+  "who": "Yuri Oganessian and team",
+  "places": [
+   {
+    "city": "Dubna (JINR)",
+    "country": "Russia",
+    "lat": 56.74,
+    "lon": 37.17
+   }
+  ],
+  "note": "The heaviest known element; named after Yuri Oganessian.",
+  "row": 7,
+  "col": 18
+ }
+]

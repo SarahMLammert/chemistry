@@ -1,6 +1,6 @@
 # Chemistry 2e Companion
 
-A glossary and timeline that follow the chapters of
+A glossary, timeline and element discovery map that follow the chapters of
 [OpenStax Chemistry 2e](https://openstax.org/details/books/chemistry-2e),
 written in our own words. Plain HTML/CSS/JavaScript — no build step —
 published with GitHub Pages.
@@ -19,9 +19,12 @@ assets/
 data/
   terms/                Glossary terms, one file per chapter + fields.md
   timeline.md           Timeline events
+  element-discovery.json  Year, discoverer and place for all 118 elements
+  world-map.json        World outline for the discovery map (Natural Earth)
 tools/
   glossary/             Searchable glossary built from data/terms
   timeline/             Timeline built from data/timeline.md
+  element-discovery/    Periodic table + world map of where/when elements were found
 docs/
   WRITING-TERMS.md      How to write glossary terms
   WRITING-THE-TIMELINE.md  How to write timeline events
@@ -62,5 +65,11 @@ Access for free at https://openstax.org/books/chemistry-2e/pages/1-introduction.
   permission.
 
 This project is not affiliated with or endorsed by OpenStax.
+
+**Element discovery map:** discovery dates and discoverers were checked against
+Wikipedia's [Timeline of chemical element discoveries](https://en.wikipedia.org/wiki/Timeline_of_chemical_element_discoveries);
+where the commonly credited year differs from the earliest report, the
+element's note says so. Map outlines are from [Natural Earth](https://www.naturalearthdata.com/)
+(public domain) via [world-atlas](https://github.com/topojson/world-atlas) (ISC license).
 
 The site's code and content are licensed under the terms in [LICENSE](LICENSE).

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Element Discovery Map · ChemTools</title>
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <style>
+    :root {
+      --era0: #0e3d7e; --era1: #1757ac; --era2: #257de0; --era3: #519ced; --era4: #84b9f3;
+      --dot: #d1495b; --dot-ring: #ffffff; --undiscovered: var(--border);
+      --ocean: #eef3fa; --land: #d9dee7; --borderline: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --era0: #cce3fd; --era1: #84b9f3; --era2: #338ced; --era3: #2370cd; --era4: #1757ac;
+        --dot: #ff6b7a; --dot-ring: #171b23; --ocean: #131924; --land: #2a313d; --borderline: #171b23;
+      }
+    }
+    .wide { max-width: 1400px; }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+    .year { font-size: 2rem; font-weight: 800; font-variant-numeric: tabular-nums; min-width: 7.5ch; line-height: 1; }
+    .year small { display: block; font-size: .8rem; font-weight: 500; color: var(--muted); margin-top: .3rem; }
+    .slider { flex: 1 1 320px; display: flex; flex-direction: column; gap: .3rem; }
+    .slider input { width: 100%; accent-color: var(--accent); }
+    .ticks { display: flex; justify-content: space-between; font-size: .72rem; color: var(--muted); }
+    .legend { display: flex; flex-wrap: wrap; gap: .4rem .9rem; font-size: .8rem; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: .35rem; }
+    .sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+    .sw.none { border: 1.5px dashed var(--muted); }
+
+    .stage { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+    @media (max-width: 1100px) { .stage { grid-template-columns: 1fr; } }
+    .card-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .card-box h2 { font-size: 1rem; margin: 0 0 .6rem; display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .card-box h2 .hint { font-size: .78rem; font-weight: 400; color: var(--muted); }
+
+    /* Periodic table */
+    .ptable { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); gap: 3px; }
+    .cell { aspect-ratio: 1 / 1.1; border-radius: 4px; border: 1.5px dashed var(--undiscovered); background: transparent;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;
+            font-family: var(--font); padding: 0; color: var(--muted); position: relative; min-width: 0; transition: transform .15s; }
+    .cell .z { font-size: .5rem; line-height: 1; opacity: .8; }
+    .cell .s { font-size: clamp(.55rem, 1.05vw, .9rem); font-weight: 700; line-height: 1.1; }
+    .cell.found { border: 0; color: var(--cell-ink, #fff); background: var(--cell-bg); }
+    .cell.pop { animation: pop .5s ease-out; }
+    @keyframes pop { 0% { transform: scale(1.5); } 100% { transform: scale(1); } }
+    .cell.dim { opacity: .18; }
+    .cell.sel, .cell:focus-visible { outline: 3px solid var(--dot); outline-offset: 1px; z-index: 2; }
+    .cell.spacer { visibility: hidden; }
+    .fgap { grid-column: 1 / -1; height: 8px; }
+    .fmark { font-size: clamp(.4rem, .8vw, .55rem); line-height: 1.1; text-align: center; color: var(--muted); display: flex; align-items: center; justify-content: center; border-radius: 4px; border: 1px dotted var(--border); }
+
+    /* Map */
+    .map-wrap { position: relative; border-radius: 8px; overflow: hidden; background: var(--ocean); touch-action: none; }
+    .map-wrap svg { display: block; width: 100%; height: auto; cursor: grab; }
+    .map-wrap svg.dragging { cursor: grabbing; }
+    .land { fill: var(--land); }
+    .borders { fill: none; stroke: var(--borderline); stroke-width: .35; vector-effect: non-scaling-stroke; }
+    .city { fill: var(--dot); stroke: var(--dot-ring); stroke-width: 1.5; vector-effect: non-scaling-stroke; cursor: pointer; transition: opacity .2s; }
+    .city.dim { opacity: .2; }
+    .city.sel { stroke: var(--text); stroke-width: 2.5; }
+    .city.hl { fill: var(--accent); }
+    .zoom-btns { display: flex; gap: .4rem; }
+    .zoom-btns button { padding: .3rem .7rem; font-size: .8rem; }
+
+    /* Details + tooltip */
+    .details { min-height: 7rem; }
+    .details .big { display: flex; gap: 1rem; align-items: center; }
+    .details .tile { width: 64px; height: 70px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex: none; }
+    .details .tile b { font-size: 1.6rem; line-height: 1; }
+    .details .tile span { font-size: .7rem; }
+    .details h3 { margin: 0; font-size: 1.2rem; }
+    .details p { margin: .5rem 0 0; }
+    .chip { display: inline-block; margin: .25rem .3rem 0 0; padding: .15rem .55rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent); font-size: .85rem; cursor: pointer; border: 0; font-weight: 500; }
+    .tip { position: fixed; pointer-events: none; z-index: 10; background: var(--text); color: var(--surface); font-size: .8rem; padding: .35rem .55rem; border-radius: 6px; max-width: 260px; display: none; line-height: 1.35; }
+    .count { font-size: .9rem; color: var(--muted); }
+    .count b { color: var(--text); font-size: 1.1rem; }
+    table.list td, table.list th { font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wide">
+      <a class="brand" href="../../">Chem<span>Tools</span></a>
+      <nav style="display:flex;gap:1.1rem"><a href="../glossary/">Glossary</a><a href="../timeline/">Timeline</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap wide">
+    <div class="tool-head">
+      <div class="crumbs"><a href="../../">Home</a></div>
+      <h1>Element Discovery Map</h1>
+      <p class="muted">When and where every element was discovered. Drag the slider or press play to watch the periodic table fill in, and see where in the world each discovery happened.</p>
+    </div>
+
+    <section class="panel">
+      <div class="controls">
+        <div class="year" id="year">Ancient<small id="count"></small></div>
+        <button id="play" type="button" aria-label="Play">▶ Play</button>
+        <div class="slider">
+          <input id="slider" type="range" min="1640" max="2010" step="1" value="2010" aria-label="Year" />
+          <div class="ticks"><span>Ancient</span><span>1700</span><span>1800</span><span>1900</span><span>2010</span></div>
+        </div>
+      </div>
+      <div class="legend" id="legend" style="margin-top:.9rem"></div>
+    </section>
+
+    <div class="stage">
+      <section class="card-box">
+        <h2>Periodic table <span class="hint">Click an element to see where it was found</span></h2>
+        <div class="ptable" id="ptable" role="grid" aria-label="Periodic table"></div>
+      </section>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <section class="card-box">
+          <h2>Where it happened
+            <span class="zoom-btns">
+              <button class="secondary" id="z-world" type="button">World</button>
+              <button class="secondary" id="z-europe" type="button">Europe</button>
+              <button class="secondary" id="z-usa" type="button">USA</button>
+            </span>
+          </h2>
+          <div class="map-wrap"><svg id="map" role="img" aria-label="World map of discovery locations"></svg></div>
+          <p class="count" style="margin:.5rem 0 0">Dots grow with the number of elements found there. Scroll or pinch to zoom, drag to move.</p>
+        </section>
+        <section class="card-box details" id="details" aria-live="polite">
+          <p class="muted" style="margin:0">Click an element or a dot on the map.</p>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel">
+      <details>
+        <summary><b>All elements as a list</b></summary>
+        <div style="overflow-x:auto;margin-top:.6rem">
+          <table class="list"><thead><tr><th class="num">Z</th><th>Element</th><th class="num">Year</th><th>Discovered by</th><th>Where</th></tr></thead><tbody id="list"></tbody></table>
+        </div>
+      </details>
+      <p class="ref" style="margin-top:.9rem">Years are the dates elements are usually credited as discovered. Some were noticed earlier or isolated later; each element's note explains. Sources: discovery dates and discoverers checked against Wikipedia's <a href="https://en.wikipedia.org/wiki/Timeline_of_chemical_element_discoveries">Timeline of chemical element discoveries</a>; map outlines from <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain) via <a href="https://github.com/topojson/world-atlas">world-atlas</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap wide">Part of a companion site to <a href="https://openstax.org/details/books/chemistry-2e">OpenStax Chemistry 2e</a>. Not affiliated with or endorsed by OpenStax.</div>
+  </footer>
+
+  <div class="tip" id="tip"></div>
+
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+    const h = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const [els, world] = await Promise.all([
+      fetch("../../data/element-discovery.json").then((r) => r.json()),
+      fetch("../../data/world-map.json").then((r) => r.json()),
+    ]);
+
+    // ---------- eras & colors ----------
+    const ERAS = ["Ancient times", "1669–1799", "1800s", "1900–1949", "1950 onward"];
+    const era = (y) => (y == null ? 0 : y < 1800 ? 1 : y < 1900 ? 2 : y < 1950 ? 3 : 4);
+    const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+    const lum = (hex) => {
+      const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    };
+    const eraColor = (i) => css(`--era${i}`);
+    const inkFor = (bg) => (lum(bg) > 0.25 ? "#0e1a2b" : "#ffffff");
+    $("legend").innerHTML = ERAS.map((e, i) => `<span><i class="sw" style="background:var(--era${i})"></i>${e}</span>`).join("") +
+      `<span><i class="sw none"></i>Not discovered yet</span>`;
+
+    // ---------- cities ----------
+    const cityKey = (p) => `${p.city}|${p.country}`;
+    const cities = new Map();
+    for (const e of els) for (const p of e.places) {
+      const k = cityKey(p);
+      if (!cities.has(k)) cities.set(k, { key: k, ...p, els: [] });
+      cities.get(k).els.push(e);
+    }
+    const yearLabel = (e) => (e.year == null ? "Ancient" : e.year);
+    const placeLabel = (e) => (e.places.length ? e.places.map((p) => `${p.city}, ${p.country}`).join(" · ") : "—");
+
+    // ---------- periodic table ----------
+    const grid = $("ptable");
+    const cellOf = new Map();
+    const byPos = new Map(els.map((e) => [`${e.row},${e.col}`, e]));
+    for (let row = 1; row <= 10; row++) {
+      if (row === 8) { grid.insertAdjacentHTML("beforeend", `<div class="fgap"></div>`); continue; }
+      for (let col = 1; col <= 18; col++) {
+        const e = byPos.get(`${row},${col}`);
+        if (!e) {
+          if ((row === 6 || row === 7) && col === 3) grid.insertAdjacentHTML("beforeend", `<div class="fmark">${row === 6 ? "57–71" : "89–103"}</div>`);
+          else grid.insertAdjacentHTML("beforeend", `<div class="cell spacer" aria-hidden="true"></div>`);
+          continue;
+        }
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "cell";
+        b.innerHTML = `<span class="z">${e.z}</span><span class="s">${e.symbol}</span>`;
+        b.setAttribute("aria-label", `${e.name}, ${yearLabel(e)}`);
+        b.addEventListener("click", () => selectElement(e));
+        b.addEventListener("pointerenter", (ev) => { showTip(ev, `<b>${h(e.name)}</b> · ${h(yearLabel(e))}${e.who ? `<br>${h(e.who)}` : ""}${e.places.length ? `<br>${h(placeLabel(e))}` : ""}`); hoverCities(e); });
+        b.addEventListener("pointermove", moveTip);
+        b.addEventListener("pointerleave", () => { hideTip(); hoverCities(null); });
+        grid.appendChild(b);
+        cellOf.set(e.z, b);
+      }
+    }
+
+    // ---------- map ----------
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = $("map");
+    const W = world.width, H = world.height;
+    const proj = (lon, lat) => [(lon + 180) * world.k, (world.top - lat) * world.k];
+    svg.innerHTML = `<rect x="-2000" y="-2000" width="5000" height="5000" fill="transparent"/><path class="land" d="${world.land}"/><path class="borders" d="${world.borders}"/><g id="dots"></g>`;
+    const dotsG = svg.querySelector("#dots");
+    const dotOf = new Map();
+    for (const c of cities.values()) {
+      const [x, y] = proj(c.lon, c.lat);
+      const el = document.createElementNS(NS, "circle");
+      el.setAttribute("cx", x); el.setAttribute("cy", y); el.setAttribute("class", "city");
+      el.addEventListener("click", (ev) => { ev.stopPropagation(); selectCity(c); });
+      el.addEventListener("pointerenter", (ev) => {
+        const vis = c.els.filter(visible);
+        showTip(ev, `<b>${h(c.city)}, ${h(c.country)}</b><br>${vis.length ? vis.map((e) => h(e.symbol)).join(" ") : "Nothing discovered yet"}`);
+        highlightCells(c.els, true);
+      });
+      el.addEventListener("pointermove", moveTip);
+      el.addEventListener("pointerleave", () => { hideTip(); highlightCells(null, true); });
+      dotsG.appendChild(el);
+      dotOf.set(c.key, el);
+    }
+    // Bigger cities on the bottom so small ones stay clickable
+    [...cities.values()].sort((a, b) => b.els.length - a.els.length).forEach((c) => dotsG.appendChild(dotOf.get(c.key)));
+
+    let vb = { x: 0, y: 0, w: W, h: H };
+    const VIEWS = {
+      world: { x: 0, y: 0, w: W, h: H },
+      europe: (() => { const [x1, y1] = proj(-12, 63), [x2, y2] = proj(33, 35); return fit(x1, y1, x2 - x1, y2 - y1); })(),
+      usa: (() => { const [x1, y1] = proj(-128, 50), [x2, y2] = proj(-66, 24); return fit(x1, y1, x2 - x1, y2 - y1); })(),
+    };
+    function fit(x, y, w, hgt) { // keep the map's aspect ratio
+      const ar = W / H;
+      if (w / hgt > ar) { const nh = w / ar; return { x, y: y - (nh - hgt) / 2, w, h: nh }; }
+      const nw = hgt * ar; return { x: x - (nw - w) / 2, y, w: nw, h: hgt };
+    }
+    function setView(v, animate = true) {
+      const from = { ...vb }, to = clampView(v);
+      if (!animate) { vb = to; applyView(); return; }
+      const t0 = performance.now();
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / 350), e = 1 - (1 - k) ** 3;
+        vb = { x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e, w: from.w + (to.w - from.w) * e, h: from.h + (to.h - from.h) * e };
+        applyView();
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    function clampView(v) {
+      const w = Math.min(W, Math.max(W / 20, v.w)), hh = w * (H / W);
+      return { x: Math.min(W - w, Math.max(0, v.x)), y: Math.min(H - hh, Math.max(0, v.y)), w, h: hh };
+    }
+    function applyView() {
+      svg.setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+      sizeDots();
+    }
+    function sizeDots() {
+      const pxPerUnit = (svg.clientWidth || W) / vb.w;
+      const shrink = Math.min(1, Math.max(0.5, (svg.clientWidth || W) / 620)); // smaller dots on small screens
+      for (const c of cities.values()) {
+        const n = c.els.filter(visible).length;
+        const r = n ? (4 + 2.6 * Math.sqrt(n)) * shrink : 0;
+        const el = dotOf.get(c.key);
+        el.setAttribute("r", r / pxPerUnit);
+        el.style.display = n ? "" : "none";
+      }
+    }
+    $("z-world").onclick = () => setView(VIEWS.world);
+    $("z-europe").onclick = () => setView(VIEWS.europe);
+    $("z-usa").onclick = () => setView(VIEWS.usa);
+    // wheel zoom + drag pan
+    const toSvg = (cx, cy) => { const r = svg.getBoundingClientRect(); return [vb.x + ((cx - r.left) / r.width) * vb.w, vb.y + ((cy - r.top) / r.height) * vb.h]; };
+    svg.addEventListener("wheel", (ev) => {
+      ev.preventDefault();
+      const [mx, my] = toSvg(ev.clientX, ev.clientY);
+      const f = Math.exp(ev.deltaY * 0.0015);
+      const w = vb.w * f, hh = vb.h * f;
+      vb = clampView({ x: mx - (mx - vb.x) * (w / vb.w), y: my - (my - vb.y) * (hh / vb.h), w, h: hh });
+      applyView();
+    }, { passive: false });
+    const pointers = new Map();
+    let drag = null, moved = false;
+    svg.addEventListener("pointerdown", (ev) => {
+      pointers.set(ev.pointerId, [ev.clientX, ev.clientY]);
+      if (pointers.size === 1) { drag = { x: ev.clientX, y: ev.clientY, vb: { ...vb } }; moved = false; }
+      svg.setPointerCapture(ev.pointerId);
+    });
+    svg.addEventListener("pointermove", (ev) => {
+      if (!pointers.has(ev.pointerId)) return;
+      const prev = pointers.get(ev.pointerId);
+      pointers.set(ev.pointerId, [ev.clientX, ev.clientY]);
+      if (pointers.size === 2) { // pinch
+        const [a, b] = [...pointers.values()];
+        const others = [...pointers.entries()].find(([id]) => id !== ev.pointerId)[1];
+        const d0 = Math.hypot(prev[0] - others[0], prev[1] - others[1]), d1 = Math.hypot(a[0] - b[0], a[1] - b[1]);
+        if (d0 > 0) {
+          const [mx, my] = toSvg((a[0] + b[0]) / 2, (a[1] + b[1]) / 2), f = d0 / d1;
+          const w = vb.w * f, hh = vb.h * f;
+          vb = clampView({ x: mx - (mx - vb.x) * (w / vb.w), y: my - (my - vb.y) * (hh / vb.h), w, h: hh });
+          applyView();
+        }
+        return;
+      }
+      if (!drag) return;
+      const r = svg.getBoundingClientRect();
+      const dx = ev.clientX - drag.x, dy = ev.clientY - drag.y;
+      if (Math.abs(dx) + Math.abs(dy) > 3) { moved = true; svg.classList.add("dragging"); }
+      vb = clampView({ ...drag.vb, x: drag.vb.x - (dx / r.width) * drag.vb.w, y: drag.vb.y - (dy / r.height) * drag.vb.h });
+      applyView();
+    });
+    const endPointer = (ev) => { pointers.delete(ev.pointerId); if (!pointers.size) { drag = null; svg.classList.remove("dragging"); } };
+    svg.addEventListener("pointerup", endPointer);
+    svg.addEventListener("pointercancel", endPointer);
+    svg.addEventListener("click", () => { if (!moved) clearSelection(); });
+    window.addEventListener("resize", sizeDots);
+
+    // ---------- time ----------
+    const slider = $("slider");
+    const MIN = Number(slider.min);
+    let year = Number(slider.value);
+    const visible = (e) => e.year == null || e.year <= year;
+    function render(prevYear) {
+      const ancient = year < 1669;
+      $("year").firstChild.nodeValue = ancient ? "Ancient" : String(year);
+      const n = els.filter(visible).length;
+      $("count").textContent = `${n} of 118 elements known`;
+      for (const e of els) {
+        const b = cellOf.get(e.z), on = visible(e);
+        b.classList.toggle("found", on);
+        if (on) { const bg = eraColor(era(e.year)); b.style.setProperty("--cell-bg", bg); b.style.setProperty("--cell-ink", inkFor(bg)); }
+        if (on && prevYear != null && e.year != null && e.year > prevYear) { b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }
+      }
+      sizeDots();
+      // keep the details panel in step with the slider
+      if (selected?.type === "city") selectCity(selected.value);
+      else if (selected?.type === "el") selectElement(selected.value, false);
+    }
+    slider.addEventListener("input", () => { const p = year; year = Number(slider.value); render(p); });
+    let timer = null;
+    function stop() { clearInterval(timer); timer = null; $("play").textContent = "▶ Play"; }
+    $("play").addEventListener("click", () => {
+      if (timer) return stop();
+      if (year >= Number(slider.max)) { year = MIN; slider.value = MIN; render(); }
+      $("play").textContent = "❚❚ Pause";
+      timer = setInterval(() => {
+        const p = year;
+        year = Math.min(Number(slider.max), year + 1);
+        slider.value = year; render(p);
+        if (year >= Number(slider.max)) stop();
+      }, 45);
+    });
+
+    // ---------- linking ----------
+    let selected = null; // {type, value}
+    function highlightCells(list, hover) {
+      if (selected && hover) return; // a click selection wins over hover
+      const set = list ? new Set(list.map((e) => e.z)) : null;
+      for (const [z, b] of cellOf) b.classList.toggle("dim", !!set && !set.has(z));
+    }
+    function hoverCities(e) {
+      if (selected) return;
+      const keys = e ? new Set(e.places.map(cityKey)) : null;
+      for (const [k, el] of dotOf) el.classList.toggle("hl", !!keys && keys.has(k));
+    }
+    function clearSelection() {
+      selected = null;
+      for (const b of cellOf.values()) b.classList.remove("sel", "dim");
+      for (const el of dotOf.values()) el.classList.remove("sel", "dim", "hl");
+      $("details").innerHTML = `<p class="muted" style="margin:0">Click an element or a dot on the map.</p>`;
+    }
+    function selectElement(e, zoom = true) {
+      clearSelection();
+      selected = { type: "el", value: e };
+      cellOf.get(e.z).classList.add("sel");
+      const keys = new Set(e.places.map(cityKey));
+      for (const [k, el] of dotOf) { el.classList.toggle("sel", keys.has(k)); el.classList.toggle("dim", keys.size > 0 && !keys.has(k)); }
+      const bg = eraColor(era(e.year));
+      $("details").innerHTML = `
+        <div class="big">
+          <div class="tile" style="background:${bg};color:${inkFor(bg)}"><span>${e.z}</span><b>${h(e.symbol)}</b></div>
+          <div><h3>${h(e.name)}</h3><div class="muted">${e.year == null ? "Known since ancient times" : `Discovered ${e.year}`}${e.who ? ` · ${h(e.who)}` : ""}</div></div>
+        </div>
+        ${e.places.length ? `<p>${e.places.map((p) => `<button class="chip" data-city="${h(cityKey(p))}">📍 ${h(p.city)}, ${h(p.country)}</button>`).join("")}</p>` : ""}
+        <p>${h(e.note)}</p>
+        ${e.year != null && e.year > year ? `<p class="muted" style="font-size:.85rem">Not discovered yet at ${year < 1669 ? "this point" : year}. Move the slider to ${e.year} or later to see it appear.</p>` : ""}`;
+      bindCityChips();
+      // Zoom the map to the place(s)
+      if (zoom && e.places.length) {
+        const pts = e.places.map((p) => proj(p.lon, p.lat));
+        const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+        const pad = 40, x1 = Math.min(...xs) - pad, y1 = Math.min(...ys) - pad, x2 = Math.max(...xs) + pad, y2 = Math.max(...ys) + pad;
+        setView(fit(x1, y1, Math.max(120, x2 - x1), Math.max(60, y2 - y1)));
+      }
+    }
+    function selectCity(c) {
+      clearSelection();
+      selected = { type: "city", value: c };
+      dotOf.get(c.key).classList.add("sel");
+      const set = new Set(c.els.map((e) => e.z));
+      for (const [z, b] of cellOf) b.classList.toggle("dim", !set.has(z));
+      const sorted = [...c.els].sort((a, b) => a.year - b.year);
+      $("details").innerHTML = `
+        <h3>📍 ${h(c.city)}, ${h(c.country)}</h3>
+        <div class="muted">${c.els.length} element${c.els.length > 1 ? "s" : ""} discovered here${c.els.some((e) => !visible(e)) ? ` (${c.els.filter(visible).length} by ${year})` : ""}</div>
+        <p>${sorted.map((e) => `<button class="chip" data-z="${e.z}" style="${visible(e) ? "" : "opacity:.5"}">${h(e.symbol)} · ${h(e.name)} (${e.year})</button>`).join("")}</p>`;
+      $("details").querySelectorAll("[data-z]").forEach((b) => b.addEventListener("click", () => selectElement(els.find((e) => e.z === +b.dataset.z))));
+    }
+    function bindCityChips() {
+      $("details").querySelectorAll("[data-city]").forEach((b) => b.addEventListener("click", () => selectCity(cities.get(b.dataset.city))));
+    }
+
+    // ---------- tooltip ----------
+    const tip = $("tip");
+    function showTip(ev, html) { tip.innerHTML = html; tip.style.display = "block"; moveTip(ev); }
+    function moveTip(ev) {
+      const pad = 14, r = tip.getBoundingClientRect();
+      let x = ev.clientX + pad, y = ev.clientY + pad;
+      if (x + r.width > innerWidth - 8) x = ev.clientX - r.width - pad;
+      if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - pad;
+      tip.style.left = x + "px"; tip.style.top = y + "px";
+    }
+    function hideTip() { tip.style.display = "none"; }
+
+    // ---------- list view ----------
+    $("list").innerHTML = els.map((e) => `<tr><td class="num">${e.z}</td><td>${h(e.name)} (${h(e.symbol)})</td><td class="num">${h(yearLabel(e))}</td><td>${h(e.who || "—")}</td><td>${h(placeLabel(e))}</td></tr>`).join("");
+
+    // ---------- start ----------
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => render());
+    applyView();
+    render();
+  </script>
+</body>
+</html>
